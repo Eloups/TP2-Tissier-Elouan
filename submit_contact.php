@@ -24,8 +24,8 @@
                     <h5 class="card-title">Il faut un email et un message valides pour soumettre le formulaire</h5>
                 <?php } else { ?>
                     <h5 class="card-title">Rappel de vos informations</h5>
-                    <p class="card-text"><b>Email</b> : <?php echo $_POST['email']; ?> </p>
-                    <p class="card-text"><b>Message</b> : <?php echo $_POST['message']; ?> </p>
+                    <p class="card-text"><b>Email</b> : <?php echo htmlspecialchars($_POST['email']); ?> </p>
+                    <p class="card-text"><b>Message</b> : <?php echo htmlspecialchars($_POST['message']); ?> </p>
                 <?php } ?>
             </div>
         </div>
