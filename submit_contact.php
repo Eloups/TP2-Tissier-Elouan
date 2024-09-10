@@ -20,9 +20,13 @@
         <h1>Message bien reçu !</h1>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Rappel de vos informations</h5>
-                <p class="card-text"><b>Email</b> : <?php echo $_GET['email']; ?> </p>
-                <p class="card-text"><b>Message</b> : <?php echo $_GET['message']; ?> </p>
+                <?php if(empty($_GET['email']) || empty($_GET['message'])){ ?>
+                    <h5 class="card-title">Il faut un email et un message pour soumettre le formulaire</h5>
+                <?php } else { ?>
+                    <h5 class="card-title">Rappel de vos informations</h5>
+                    <p class="card-text"><b>Email</b> : <?php echo $_GET['email']; ?> </p>
+                    <p class="card-text"><b>Message</b> : <?php echo $_GET['message']; ?> </p>
+                <?php } ?>
             </div>
         </div>
 
