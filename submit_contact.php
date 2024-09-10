@@ -33,7 +33,7 @@
                 if (isset($_FILES['screenshot']) && $_FILES['screenshot']['error'] == 0)
                 {
                     // Testons si le fichier n'est pas trop gros
-                    if ($_FILES['screenshot']['size'] <= 1000000)
+                    if ($_FILES['screenshot']['size'] <= 3000000)
                     {
                         // Testons si l'extension est autorisée
                         $fileInfo = pathinfo($_FILES['screenshot']['name']);
@@ -41,13 +41,23 @@
                         $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
                         if (in_array($extension, $allowedExtensions))
                         {
-                            // On peut valider le fichier et le stocker définitivement
-                            move_uploaded_file($_FILES['screenshot']['tmp_name'],
-                            'uploads/' . basename($_FILES['screenshot']['name']));
-                            echo "L'envoi a bien été effectué !";
+                            $i = 0;
+                            $loop = true;
+                            while($loop){
+                                if(!is_uploaded_file('uploads/' . "fichier$i.png")){
+                                    // On peut valider le fichier et le stocker définitivement
+                                    move_uploaded_file($_FILES['screenshot']['tmp_name'],
+                                    'uploads/' . "fichier$i.png");
+                                    echo "L'envoi a bien été effectué !";
+                                    $loop = false;
+                                }
+                                $i++;
+                            }
+                        
                         }
                     }
                 }
+                
             ?>
         </div>
 
